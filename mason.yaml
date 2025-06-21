@@ -1,2 +1,5 @@
 bricks:
   pine: ^0.2.0
+  pine_retrofit: ^0.4.0+1
+  pine_repository: ^0.5.0
+  pine_network_request: ^0.4.0

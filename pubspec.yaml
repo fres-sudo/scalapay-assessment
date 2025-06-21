@@ -46,6 +46,11 @@ dependencies:
   cached_network_image: ^3.4.1
   skeletonizer: ^1.4.3
   dio: ^5.8.0+1
+  http_mock_adapter: ^0.6.1
+  retrofit: ^4.4.2
+  data_fixture_dart: ^3.0.0
+  freezed_annotation: ^3.0.0
+  freezed: ^3.0.6
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +62,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  retrofit_generator: '>=8.0.0 <10.0.0'
+  json_serializable: ^6.9.5
+  build_runner: ^2.5.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
