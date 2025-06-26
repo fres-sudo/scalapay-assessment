@@ -22,6 +22,15 @@ abstract class SearchProductResponse extends DTO with _$SearchProductResponse {
       _$SearchProductResponseFromJson(json);
 }
 
+extension SearchProductResponseExtension on SearchProductResponse {
+  /// Returns a flat list of products from the response obj.
+  List<ProductJTO> get products =>
+      groupedHits
+          .expand((groupedHit) => groupedHit.hits)
+          .map((hit) => hit.document)
+          .toList();
+}
+
 @freezed
 sealed class GroupedHit with _$GroupedHit {
   const factory GroupedHit({required List<Hit> hits}) = _GroupedHit;

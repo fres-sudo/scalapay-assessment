@@ -8,6 +8,7 @@ import 'package:scalapay_assessment/models/product/product.dart';
 import 'package:scalapay_assessment/services/network/jto/product/product_jto.dart';
 import 'package:scalapay_assessment/services/network/product/product_service.dart';
 import 'package:scalapay_assessment/services/network/requests/search_product/search_product_request.dart';
+import 'package:scalapay_assessment/services/network/responses/search_product/search_product_response.dart';
 import 'package:talker/talker.dart';
 
 /// Abstract class of ProductRepository
@@ -46,13 +47,9 @@ class ProductRepositoryImpl implements ProductRepository {
         maxPrice: request.maxPrice,
       );
       logger.info('[ProductRepository] Found ${response.found} products');
-      return response.groupedHits
-          .map(
-            (g) =>
-                g.hits.map((h) => productMapper.fromDTO(h.document)).toList(),
-          )
-          .expand((x) => x)
-          .toList();
+      return productMapper
+          .fromDTOMany(response.products)
+          .toList(growable: false);
     } on DioException catch (error, stackTrace) {
       logger.error(
         '[ProductRepository] Error while searching products',

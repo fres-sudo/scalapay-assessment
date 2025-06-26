@@ -33,18 +33,10 @@ void main() {
     );
   });
 
-  List<Product> extractProductsFromResponse(SearchProductResponse response) {
-    return response.groupedHits
-        .map((g) => g.hits.map((h) => mapper.fromDTO(h.document)).toList())
-        .expand((x) => x)
-        .toList();
-  }
-
   group('ProductRepostory.search', () {
     final request = SearchProductRequestFixture.factory().makeSingle();
     final response = SearchProductResponseFixture.factory().makeSingle();
 
-    // Test case: successful search
     test('should return a list of products on a successful search', () async {
       when(
         () => mockService.searchProducts(
@@ -64,11 +56,8 @@ void main() {
       final products = await repository.search(request: request);
 
       expect(products, isA<List>());
-      expect(products.length, extractProductsFromResponse(response).length);
-      expect(
-        products.first.id,
-        extractProductsFromResponse(response).firstOrNull?.id,
-      ); // Example: Check specific data if needed
+      expect(products.length, response.products.length);
+      expect(products.first.id, response.products.firstOrNull?.id);
 
       verify(
         () => mockService.searchProducts(
