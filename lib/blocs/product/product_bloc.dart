@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:scalapay_assessment/exceptions/app_exception.dart';
 import 'package:scalapay_assessment/models/product/product.dart';
 import 'package:scalapay_assessment/repositories/product_repository.dart';
 import 'package:scalapay_assessment/services/network/requests/search_product/search_product_request.dart';
@@ -39,8 +40,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       } else {
         emit(ProductState.success(products: products));
       }
-    } catch (e) {
-      emit(ProductState.error());
+    } on AppException catch (e) {
+      emit(ProductState.error(e));
+    } catch (_) {
+      emit(ProductState.error(UnknownException()));
     }
   }
 }

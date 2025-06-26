@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pine/pine.dart';
 import 'package:provider/provider.dart';
+import 'package:scalapay_assessment/exceptions/app_exception.dart';
+import 'package:scalapay_assessment/exceptions/extension.dart';
 import 'package:scalapay_assessment/models/product/product.dart';
 import 'package:scalapay_assessment/services/network/jto/product/product_jto.dart';
 import 'package:scalapay_assessment/services/network/product/product_service.dart';
@@ -58,14 +60,14 @@ class ProductRepositoryImpl implements ProductRepository {
         error,
         stackTrace,
       );
-      rethrow;
+      throw error.toAppException();
     } catch (error, stackTrace) {
       logger.error(
         '[ProductRepository] Error while searching products',
         error,
         stackTrace,
       );
-      rethrow;
+      throw UnknownException();
     }
   }
 }

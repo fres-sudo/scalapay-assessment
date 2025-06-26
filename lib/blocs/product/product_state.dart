@@ -11,5 +11,5 @@ sealed class ProductState with _$ProductState {
 
   const factory ProductState.empty() = EmptyProductState;
 
-  const factory ProductState.error() = ErrorProductState;
+  const factory ProductState.error(AppException error) = ErrorProductState;
 }

@@ -21,7 +21,7 @@ class ProductsGrid extends StatelessWidget {
             SuccessProductState(:final products) => _GridView(
               products: products,
             ),
-            ErrorProductState() => const _ErrorState(),
+            ErrorProductState(:final error) => _ErrorState(error.message),
             _ => const SliverToBoxAdapter(child: SizedBox.shrink()),
           },
     );
@@ -54,7 +54,9 @@ class _GridView extends StatelessWidget {
 }
 
 class _ErrorState extends StatelessWidget {
-  const _ErrorState();
+  const _ErrorState(this.errorMessage);
+
+  final String errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +73,7 @@ class _ErrorState extends StatelessWidget {
             size: 48,
             color: Theme.of(context).colorScheme.error,
           ),
-          Text(
-            'Si è verificato un errore durante la ricerca dei prodotti, riprova più tardi.',
-            textAlign: TextAlign.center,
-          ),
+          Text(errorMessage, textAlign: TextAlign.center),
         ],
       ),
     );

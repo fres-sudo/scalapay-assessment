@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:scalapay_assessment/blocs/product/product_bloc.dart';
+import 'package:scalapay_assessment/exceptions/app_exception.dart';
 import 'package:scalapay_assessment/repositories/product_repository.dart';
 
 import '../../fixtures/models/product_fixture_factory.dart';
@@ -22,6 +23,7 @@ void main() {
   group('when the event SearchProductEvent is added to the BLoC', () {
     final products = ProductFixture.factory().makeMany(30);
     final request = SearchProductRequestFixture.factory().makeSingle();
+    final error = BadRequestException(message: "message");
 
     blocTest<ProductBloc, ProductState>(
       'handle ProductState.success when search is called',
@@ -53,10 +55,10 @@ void main() {
       setUp:
           () => when(
             () => mockRepository.search(request: request),
-          ).thenThrow(Error()),
+          ).thenThrow(error),
       act: (bloc) => bloc.search(request: request),
       skip: 1,
-      expect: () => <ProductState>[ProductState.error()],
+      expect: () => <ProductState>[ProductState.error(error)],
     );
   });
 }
