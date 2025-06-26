@@ -25,11 +25,15 @@ Scalapay Assessment by Francesco Calicchio.
    ```bash
    fvm flutter pub get
    ```
-5. Run the app:
+5. Generate the necessary files with build_runner:
+   ```bash
+   fvm dart run build_runner watch --delete-conflicting-outputs
+   ```
+6. Run the app:
    ```bash
    fvm flutter run
    ```
-6. Run tests:
+7. Run tests:
    ```bash
    fvm flutter test
    ```
