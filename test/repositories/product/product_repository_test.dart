@@ -5,6 +5,7 @@ import 'package:scalapay_assessment/repositories/mappers/product_mapper.dart';
 import 'package:scalapay_assessment/repositories/product_repository.dart';
 import 'package:scalapay_assessment/services/network/product/product_service.dart';
 import 'package:scalapay_assessment/services/network/responses/search_product/search_product_response.dart';
+import 'package:talker/talker.dart';
 
 import '../../fixtures/requests/search_product_request_fixture_factory.dart';
 import '../../fixtures/responses/search_product_response_fixture_factory.dart';
@@ -26,6 +27,7 @@ void main() {
     mockService = MockProductService();
     mapper = const ProductMapper();
     repository = ProductRepositoryImpl(
+      logger: Talker(),
       productService: mockService,
       productMapper: mapper,
     );
