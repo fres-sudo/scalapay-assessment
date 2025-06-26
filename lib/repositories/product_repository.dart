@@ -44,7 +44,6 @@ class ProductRepositoryImpl implements ProductRepository {
         'IT',
         minPrice: request.minPrice,
         maxPrice: request.maxPrice,
-        filterBy: request.filterBy,
       );
       logger.info('[ProductRepository] Found ${response.found} products');
       return response.groupedHits

@@ -17,7 +17,6 @@ sealed class SearchProductRequest extends DTO with _$SearchProductRequest {
     @Default('desc') String sortDirection,
     double? minPrice,
     double? maxPrice,
-    String? filterBy,
   }) = _SearchProductRequest;
 
   factory SearchProductRequest.empty() =>
