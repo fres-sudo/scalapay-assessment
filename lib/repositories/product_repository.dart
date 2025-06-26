@@ -28,10 +28,10 @@ class ProductRepositoryImpl implements ProductRepository {
       request.perPage,
       request.page,
       '${request.sortType}:${request.sortDirection}',
-      'scalapayappit', // Replace with actual partnerId
-      'trovaprezzi', // Replace with actual source
-      'it', // Replace with actual language
-      'IT', // Replace with actual country
+      'scalapayappit',
+      'trovaprezzi',
+      'it',
+      'IT',
       minPrice: request.minPrice,
       maxPrice: request.maxPrice,
       filterBy: request.filterBy,

@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:pine/pine.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -27,8 +29,7 @@ abstract class ProductJTO extends DTO with _$ProductJTO {
     @JsonKey(name: 'merchantId') required String merchantId,
     @JsonKey(name: 'new_offer') required bool newOffer,
     required double selling_price,
-    required List<dynamic>
-    tags, // Consider a more specific type if tags are known
+    required List<String> tags,
     required String title,
     required String url,
   }) = _ProductJTO;

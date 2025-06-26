@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scalapay_assessment/blocs/product/product_bloc.dart';
 import 'package:scalapay_assessment/cubits/product_filters/product_filters_cubit.dart';
-import 'package:scalapay_assessment/services/network/requests/search_product/search_product_request.dart';
 
 class ProductSearchField extends StatefulWidget {
   const ProductSearchField({super.key});

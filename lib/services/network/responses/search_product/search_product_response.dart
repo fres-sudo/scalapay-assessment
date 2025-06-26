@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:pine/pine.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:scalapay_assessment/services/network/jto/product/product_jto.dart';
