@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:scalapay_assessment/exceptions/app_exception.dart';
-import 'package:scalapay_assessment/models/product/product.dart';
 import 'package:scalapay_assessment/repositories/mappers/product_mapper.dart';
 import 'package:scalapay_assessment/repositories/product_repository.dart';
 import 'package:scalapay_assessment/services/network/product/product_service.dart';

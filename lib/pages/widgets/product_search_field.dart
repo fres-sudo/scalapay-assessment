@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scalapay_assessment/cubits/product_filters/product_filters_cubit.dart';
+import 'package:scalapay_assessment/ui/sizes.dart';
 
 class ProductSearchField extends StatefulWidget {
   const ProductSearchField({super.key});
@@ -51,7 +52,7 @@ class _ProductSearchFieldState extends State<ProductSearchField> {
             FocusScope.of(context).unfocus();
           },
           child: Padding(
-            padding: const EdgeInsets.only(right: 5),
+            padding: const EdgeInsets.only(right: Sizes.xs),
             child: Container(
               height: 45,
               width: 45,

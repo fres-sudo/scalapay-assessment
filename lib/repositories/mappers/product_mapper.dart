@@ -12,7 +12,7 @@ class ProductMapper extends DTOMapper<ProductJTO, Product> {
     description: dto.description,
     price: dto.listPrice.toStringAsFixed(2),
     merchantBrand: dto.merchant,
-    installmentPrice: (dto.selling_price / 3).toStringAsFixed(2),
+    installmentPrice: (dto.sellingPrice / 3).toStringAsFixed(2),
     hasImage: dto.hasImage == 1,
     image: dto.image,
     url: dto.url,

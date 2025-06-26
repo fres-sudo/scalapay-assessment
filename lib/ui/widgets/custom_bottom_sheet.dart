@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scalapay_assessment/ui/sizes.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({
@@ -16,22 +17,22 @@ class CustomBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-        16,
+        Sizes.lg,
         0,
-        16,
+        Sizes.lg,
         MediaQuery.of(context).viewInsets.bottom,
       ),
       child: SizedBox(
         height: height,
         child: Column(
           children: [
-            const SizedBox(height: 7),
+            const SizedBox(height: Sizes.sm),
             Container(
               height: 5,
               width: 45,
               decoration: BoxDecoration(
                 color: Colors.grey.shade400,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(Sizes.borderRadius / 2),
               ),
             ),
             const SizedBox(height: 8),
@@ -49,7 +50,7 @@ class CustomBottomSheet extends StatelessWidget {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: Sizes.lg),
             child,
           ],
         ),

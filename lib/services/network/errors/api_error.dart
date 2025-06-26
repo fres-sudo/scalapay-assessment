@@ -1,6 +1,4 @@
-import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:scalapay_assessment/exceptions/app_exception.dart';
 
 part 'api_error.freezed.dart';
 part 'api_error.g.dart';

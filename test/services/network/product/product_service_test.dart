@@ -39,7 +39,7 @@ void main() {
         affiliateUrl: 'http://nike.com/airmax',
         newOffer: true,
         listPrice: 200.0,
-        selling_price: 150.0,
+        sellingPrice: 150.0,
         tags: ['sport'],
         url: 'http://nike.com/product1',
       ),
@@ -61,7 +61,7 @@ void main() {
         affiliateUrl: 'http://nike.com/revolution',
         newOffer: true,
         listPrice: 100.0,
-        selling_price: 90.0,
+        sellingPrice: 90.0,
         tags: ['running'],
         url: 'http://nike.com/product2',
       ),
@@ -80,7 +80,7 @@ void main() {
     test('should filter products within price range', () async {
       final response = buildResponse(
         sampleProducts
-            .where((p) => p.selling_price >= 80 && p.selling_price <= 160)
+            .where((p) => p.sellingPrice >= 80 && p.sellingPrice <= 160)
             .toList(),
       );
       dioAdapter.onGet(
@@ -89,7 +89,7 @@ void main() {
           'q': 'nike',
           'per_page': 30,
           'page': 1,
-          'sort_by': 'selling_price:asc',
+          'sort_by': 'sellingPrice:asc',
           'partnerId': 'test',
           'source': 'test',
           'language': 'en',
@@ -104,7 +104,7 @@ void main() {
         'nike',
         30,
         1,
-        'selling_price:asc',
+        'sellingPrice:asc',
         'test',
         'test',
         'en',
@@ -116,8 +116,8 @@ void main() {
       expect(
         result.groupedHits.first.hits.every(
           (hit) =>
-              hit.document.selling_price >= 80 &&
-              hit.document.selling_price <= 160,
+              hit.document.sellingPrice >= 80 &&
+              hit.document.sellingPrice <= 160,
         ),
         true,
       );
@@ -160,9 +160,9 @@ void main() {
       );
     });
 
-    test('should sort products by selling_price asc', () async {
+    test('should sort products by sellingPrice asc', () async {
       final sorted = [...sampleProducts]
-        ..sort((a, b) => a.selling_price.compareTo(b.selling_price));
+        ..sort((a, b) => a.sellingPrice.compareTo(b.sellingPrice));
       final response = buildResponse(sorted);
       dioAdapter.onGet(
         path,
@@ -170,7 +170,7 @@ void main() {
           'q': 'nike',
           'per_page': 30,
           'page': 1,
-          'sort_by': 'selling_price:asc',
+          'sort_by': 'sellingPrice:asc',
           'partnerId': 'test',
           'source': 'test',
           'language': 'en',
@@ -183,7 +183,7 @@ void main() {
         'nike',
         30,
         1,
-        'selling_price:asc',
+        'sellingPrice:asc',
         'test',
         'test',
         'en',
@@ -192,7 +192,7 @@ void main() {
 
       final hits = result.groupedHits.first.hits;
       expect(
-        hits.first.document.selling_price <= hits[1].document.selling_price,
+        hits.first.document.sellingPrice <= hits[1].document.sellingPrice,
         true,
       );
     });

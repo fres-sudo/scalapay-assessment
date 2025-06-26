@@ -28,7 +28,7 @@ abstract class ProductJTO extends DTO with _$ProductJTO {
     required String merchant,
     @JsonKey(name: 'merchantId') required String merchantId,
     @JsonKey(name: 'new_offer') required bool newOffer,
-    required double selling_price,
+    @JsonKey(name: 'selling_price') required double sellingPrice,
     required List<String> tags,
     required String title,
     required String url,

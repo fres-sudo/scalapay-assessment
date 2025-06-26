@@ -16,7 +16,6 @@ import 'package:scalapay_assessment/services/network/requests/search_product/sea
 import 'package:scalapay_assessment/utils/constants.dart';
 import 'package:talker/talker.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
-import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 
 part 'blocs.dart';
 

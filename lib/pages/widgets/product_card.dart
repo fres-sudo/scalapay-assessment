@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scalapay_assessment/models/product/product.dart';
 import 'package:scalapay_assessment/ui/extensions.dart';
+import 'package:scalapay_assessment/ui/sizes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProductCard extends StatelessWidget {
@@ -11,10 +12,10 @@ class ProductCard extends StatelessWidget {
   final Product product;
 
   Future<void> _launchUrl(BuildContext context) async {
-    final Uri _url = Uri.parse(product.url);
+    final Uri url = Uri.parse(product.url);
     try {
       final bool hasBennLaunched = await launchUrl(
-        _url,
+        url,
         mode: LaunchMode.inAppBrowserView,
       );
 
@@ -42,15 +43,15 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => _launchUrl(context),
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(Sizes.borderRadius),
       child: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(Sizes.sm),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             product.hasImage
                 ? ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(Sizes.borderRadius),
                   child: CachedNetworkImage(
                     imageUrl: product.image,
                     fadeInDuration: Duration.zero,
@@ -70,7 +71,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
 
-            const SizedBox(height: 12.0),
+            const SizedBox(height: Sizes.md),
             Text(
               product.title,
               style: Theme.of(context).textTheme.bodyMedium?.bold,
@@ -83,7 +84,7 @@ class ProductCard extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: Sizes.sm),
             Text(
               "${product.price}€ or",
               style: Theme.of(

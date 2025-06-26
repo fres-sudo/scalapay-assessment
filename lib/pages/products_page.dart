@@ -10,6 +10,7 @@ import 'package:scalapay_assessment/pages/widgets/sort_order_bottom_sheet.dart';
 import 'package:scalapay_assessment/services/network/requests/search_product/search_product_request.dart';
 import 'package:scalapay_assessment/ui/assets.dart';
 import 'package:scalapay_assessment/ui/extensions.dart';
+import 'package:scalapay_assessment/ui/sizes.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -21,7 +22,7 @@ class ProductsPage extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.lg),
             child: RefreshIndicator.adaptive(
               onRefresh: () async {
                 context.productBloc.search(
@@ -34,7 +35,12 @@ class ProductsPage extends StatelessWidget {
                 slivers: [
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 57, 16, 16),
+                      padding: const EdgeInsets.fromLTRB(
+                        10,
+                        57,
+                        Sizes.lg,
+                        Sizes.lg,
+                      ),
                       child: Text(
                         'Esplora i prodotti',
                         style: Theme.of(context).textTheme.headlineMedium?.bold,
@@ -43,11 +49,11 @@ class ProductsPage extends StatelessWidget {
                   ),
                   SliverToBoxAdapter(
                     child: Column(
-                      spacing: 12,
+                      spacing: Sizes.md,
                       children: [
                         ProductSearchField(),
                         Row(
-                          spacing: 8,
+                          spacing: Sizes.sm,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             ElevatedButton.icon(

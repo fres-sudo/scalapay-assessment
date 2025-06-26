@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scalapay_assessment/cubits/product_filters/product_filters_cubit.dart';
+import 'package:scalapay_assessment/ui/sizes.dart';
 import 'package:scalapay_assessment/ui/widgets/custom_bottom_sheet.dart';
 
 class FilterBottomSheet extends StatefulWidget {
@@ -38,17 +39,17 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
       title: "Flitri",
       height: 300,
       child: Column(
-        spacing: 20,
+        spacing: Sizes.xl,
         children: [
           Container(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(Sizes.lg),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(Sizes.borderRadius),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 16,
+              spacing: Sizes.lg,
               children: [
                 Text(
                   "Fascia di prezzo",
@@ -58,7 +59,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   ),
                 ),
                 Row(
-                  spacing: 12,
+                  spacing: Sizes.md,
                   children: [
                     Expanded(
                       child: TextField(
@@ -145,7 +146,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: Sizes.sm),
               Expanded(
                 child: FilledButton(
                   onPressed: () {

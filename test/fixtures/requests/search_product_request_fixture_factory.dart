@@ -14,7 +14,7 @@ class SearchProductRequestFixtureFactory
       query: faker.lorem.word(),
       perPage: faker.randomGenerator.integer(50, min: 10),
       page: faker.randomGenerator.integer(10, min: 1),
-      sortType: 'selling_price',
+      sortType: 'sellingPrice',
       sortDirection: 'asc',
       minPrice: faker.randomGenerator.decimal(min: 10),
       maxPrice: faker.randomGenerator.decimal(min: 101),

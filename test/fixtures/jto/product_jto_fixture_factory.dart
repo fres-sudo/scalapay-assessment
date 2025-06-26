@@ -25,7 +25,7 @@ class ProductJTOFixtureFactory extends JsonFixtureFactory<ProductJTO> {
       merchant: faker.company.name(),
       merchantId: faker.guid.guid(),
       newOffer: faker.randomGenerator.boolean(),
-      selling_price: faker.randomGenerator.decimal(min: 80, scale: 2),
+      sellingPrice: faker.randomGenerator.decimal(min: 80, scale: 2),
       tags: ['example', 'test'],
       title: faker.lorem.words(3).join(' '),
       url: faker.internet.httpsUrl(),

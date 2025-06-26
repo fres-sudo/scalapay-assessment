@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scalapay_assessment/blocs/product/product_bloc.dart';
 import 'package:scalapay_assessment/models/product/product.dart';
 import 'package:scalapay_assessment/pages/widgets/product_card.dart';
+import 'package:scalapay_assessment/ui/sizes.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ProductsGrid extends StatelessWidget {
@@ -65,12 +66,12 @@ class _ErrorState extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        spacing: 16,
+        spacing: Sizes.lg,
         children: [
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.15),
           Icon(
             Icons.error_outline_outlined,
-            size: 48,
+            size: Sizes.xxl * 2,
             color: Theme.of(context).colorScheme.error,
           ),
           Text(errorMessage, textAlign: TextAlign.center),
@@ -91,10 +92,14 @@ class _EmptyState extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
-          spacing: 16,
+          spacing: Sizes.lg,
           children: [
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.15),
-            Icon(Icons.search_off, size: 48, color: Colors.grey.shade600),
+            Icon(
+              Icons.search_off,
+              size: Sizes.xxl * 2,
+              color: Colors.grey.shade600,
+            ),
             Text(
               'Non sono stati trovati prodotti,\n affina la tua ricerca.',
               textAlign: TextAlign.center,

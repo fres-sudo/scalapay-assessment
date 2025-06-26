@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scalapay_assessment/cubits/product_filters/product_filters_cubit.dart';
 import 'package:scalapay_assessment/services/network/requests/search_product/search_product_request.dart';
+import 'package:scalapay_assessment/ui/sizes.dart';
 import 'package:scalapay_assessment/ui/widgets/custom_bottom_sheet.dart';
 
 class SortOrderBottomSheet extends StatelessWidget {
@@ -9,11 +10,11 @@ class SortOrderBottomSheet extends StatelessWidget {
   static const sortOptions = {
     "Prezzo crescente": SearchProductRequest(
       sortDirection: "asc",
-      sortType: "selling_price",
+      sortType: "sellingPrice",
     ),
     "Prezzo decrescente": SearchProductRequest(
       sortDirection: "desc",
-      sortType: "selling_price",
+      sortType: "sellingPrice",
     ),
     "Nome A-Z": SearchProductRequest(
       sortDirection: "asc",
@@ -47,9 +48,9 @@ class SortOrderBottomSheet extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(Sizes.borderRadius),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: Sizes.lg, vertical: Sizes.sm),
         child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -74,7 +75,7 @@ class SortOrderBottomSheet extends StatelessWidget {
                         sortOptions[optionStringKey]?.sortDirection ?? "asc",
                     sortType:
                         sortOptions[optionStringKey]?.sortType ??
-                        "selling_price",
+                        "sellingPrice",
                   ),
                 );
                 Navigator.pop(context);
