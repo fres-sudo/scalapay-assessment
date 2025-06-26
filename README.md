@@ -1,16 +1,35 @@
-# scalapay_assessment
+# Scalapay Assessment
 
-A new Flutter project.
+Scalapay Assessment by Francesco Calicchio.
 
-## Getting Started
+# Requirements
 
-This project is a starting point for a Flutter application.
+- FVM installed on your local machine. You can follow the [FVM installation guide](https://fvm.app/documentation/getting-started/installation) to set it up.
 
-A few resources to get you started if this is your first Flutter project:
+# Setup
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/fres-sudo/scalapay-assessment.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd scalapay-assessment
+   ```
+3. Set up fvm:
+   ```bash
+   fvm install
+   ```
+   This will install the Flutter SDK version specified in the `.fvmrc` file.
+4. Install dependencies:
+   ```bash
+   fvm flutter pub get
+   ```
+5. Run the app:
+   ```bash
+   fvm flutter run
+   ```
+6. Run tests:
+   ```bash
+   fvm flutter test
+   ```

@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:scalapay_assessment/exceptions/app_exception.dart';
 import 'package:scalapay_assessment/models/product/product.dart';
 import 'package:scalapay_assessment/repositories/mappers/product_mapper.dart';
 import 'package:scalapay_assessment/repositories/product_repository.dart';
@@ -27,7 +28,7 @@ void main() {
     mockService = MockProductService();
     mapper = const ProductMapper();
     repository = ProductRepositoryImpl(
-      logger: Talker(),
+      logger: Talker(settings: TalkerSettings(enabled: false)),
       productService: mockService,
       productMapper: mapper,
     );
@@ -76,26 +77,29 @@ void main() {
       verifyNoMoreInteractions(mockService);
     });
 
-    test('should throw an exception when the service call fails', () async {
-      when(
-        () => mockService.searchProducts(
-          any(),
-          any(),
-          any(),
-          any(),
-          any(),
-          any(),
-          any(),
-          any(),
-          minPrice: any(named: 'minPrice'),
-          maxPrice: any(named: 'maxPrice'),
-        ),
-      ).thenThrow(Exception());
+    test(
+      'should throw the correct exception when the service call fails',
+      () async {
+        when(
+          () => mockService.searchProducts(
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            minPrice: any(named: 'minPrice'),
+            maxPrice: any(named: 'maxPrice'),
+          ),
+        ).thenThrow(Exception());
 
-      expect(
-        () => repository.search(request: request),
-        throwsA(isA<Exception>()),
-      );
-    });
+        expect(
+          () => repository.search(request: request),
+          throwsA(isA<AppException>()),
+        );
+      },
+    );
   });
 }
