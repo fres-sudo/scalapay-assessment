@@ -9,6 +9,7 @@ import 'package:scalapay_assessment/services/network/jto/product/product_jto.dar
 import 'package:scalapay_assessment/services/network/product/product_service.dart';
 import 'package:scalapay_assessment/services/network/requests/search_product/search_product_request.dart';
 import 'package:scalapay_assessment/services/network/responses/search_product/search_product_response.dart';
+import 'package:scalapay_assessment/utils/constants.dart';
 import 'package:talker/talker.dart';
 
 /// Abstract class of ProductRepository
@@ -39,10 +40,10 @@ class ProductRepositoryImpl implements ProductRepository {
         request.perPage,
         request.page,
         '${request.sortType}:${request.sortDirection}',
-        'scalapayappit',
-        'trovaprezzi',
-        'it',
-        'IT',
+        K.partnerId,
+        K.source,
+        K.language,
+        K.country,
         minPrice: request.minPrice,
         maxPrice: request.maxPrice,
       );
