@@ -22,65 +22,75 @@ class ProductsPage extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 57, 16, 16),
-                    child: Text(
-                      'Esplora i prodotti',
-                      style: Theme.of(context).textTheme.headlineMedium?.bold,
+            child: RefreshIndicator.adaptive(
+              onRefresh: () async {
+                context.productBloc.search(
+                  request: context.productFiltersCubit.state,
+                );
+              },
+              edgeOffset: 50,
+              child: CustomScrollView(
+                physics: BouncingScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 57, 16, 16),
+                      child: Text(
+                        'Esplora i prodotti',
+                        style: Theme.of(context).textTheme.headlineMedium?.bold,
+                      ),
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Column(
-                    spacing: 12,
-                    children: [
-                      ProductSearchField(),
-                      Row(
-                        spacing: 8,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ElevatedButton.icon(
-                            onPressed:
-                                () => showModalBottomSheet(
-                                  context: context,
-                                  useRootNavigator: true,
-                                  builder: (context) => FilterBottomSheet(),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      spacing: 12,
+                      children: [
+                        ProductSearchField(),
+                        Row(
+                          spacing: 8,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton.icon(
+                              onPressed:
+                                  () => showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    builder: (context) => FilterBottomSheet(),
+                                  ),
+                              label: Text('Filtri'),
+                              icon: SvgPicture.asset(
+                                AppAssets.filterIcon,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).colorScheme.onSurface,
+                                  BlendMode.srcIn,
                                 ),
-                            label: Text('Filtri'),
-                            icon: SvgPicture.asset(
-                              AppAssets.filterIcon,
-                              colorFilter: ColorFilter.mode(
-                                Theme.of(context).colorScheme.onSurface,
-                                BlendMode.srcIn,
                               ),
                             ),
-                          ),
-                          ElevatedButton.icon(
-                            onPressed:
-                                () => showModalBottomSheet(
-                                  context: context,
-                                  useRootNavigator: true,
-                                  builder: (context) => SortOrderBottomSheet(),
+                            ElevatedButton.icon(
+                              onPressed:
+                                  () => showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    builder:
+                                        (context) => SortOrderBottomSheet(),
+                                  ),
+                              icon: SvgPicture.asset(
+                                AppAssets.arrowsIcon,
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).colorScheme.onSurface,
+                                  BlendMode.srcIn,
                                 ),
-                            icon: SvgPicture.asset(
-                              AppAssets.arrowsIcon,
-                              colorFilter: ColorFilter.mode(
-                                Theme.of(context).colorScheme.onSurface,
-                                BlendMode.srcIn,
                               ),
+                              label: Text('Ordina'),
                             ),
-                            label: Text('Ordina'),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                ProductsGrid(),
-              ],
+                  ProductsGrid(),
+                ],
+              ),
             ),
           ),
         ),

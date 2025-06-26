@@ -17,19 +17,33 @@ class SortOrderBottomSheet extends StatelessWidget {
     ),
     "Nome A-Z": SearchProductRequest(
       sortDirection: "asc",
-      sortType: "text_match",
+      sortType: "_text_match",
     ),
     "Nome Z-A": SearchProductRequest(
       sortDirection: "desc",
-      sortType: "text_match",
+      sortType: "_text_match",
     ),
   };
 
+  String? _getStringKeyForSortRequest(SearchProductRequest request) {
+    for (final entry in sortOptions.entries) {
+      if (entry.value.sortType == request.sortType &&
+          entry.value.sortDirection == request.sortDirection) {
+        return entry.key;
+      }
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final currentFilterRequest = context.watchProductFiltersCubit.state;
+    final String? currentSelectedString = _getStringKeyForSortRequest(
+      currentFilterRequest,
+    );
     return CustomBottomSheet(
       title: "Ordina",
-      height: 450,
+      height: 400,
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
@@ -42,23 +56,31 @@ class SortOrderBottomSheet extends StatelessWidget {
           padding: EdgeInsets.zero,
           itemCount: sortOptions.length,
           itemBuilder: (context, index) {
-            return RadioListTile(
+            final String optionStringKey = sortOptions.keys.toList()[index];
+            return RadioListTile<String>(
               contentPadding: EdgeInsets.zero,
               title: Text(
-                sortOptions.keys.toList()[index],
+                optionStringKey,
                 style: Theme.of(
                   context,
                 ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
               ),
               radioScaleFactor: 1.2,
               onChanged: (value) {
-                context.productFiltersCubit.filter(
-                  request: sortOptions[value] ?? SearchProductRequest.empty(),
+                final cubit = context.productFiltersCubit;
+                cubit.filter(
+                  request: cubit.state.copyWith(
+                    sortDirection:
+                        sortOptions[optionStringKey]?.sortDirection ?? "asc",
+                    sortType:
+                        sortOptions[optionStringKey]?.sortType ??
+                        "selling_price",
+                  ),
                 );
                 Navigator.pop(context);
               },
-              value: sortOptions.keys.toList()[index],
-              groupValue: sortOptions.keys.toList().first, // TODO: replace
+              value: optionStringKey,
+              groupValue: currentSelectedString,
               activeColor: Theme.of(context).colorScheme.primary,
             );
           },

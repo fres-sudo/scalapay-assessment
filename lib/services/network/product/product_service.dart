@@ -23,7 +23,6 @@ abstract class ProductService {
     @Query("country") String country, {
     @Query("minPrice") double? minPrice,
     @Query("maxPrice") double? maxPrice,
-    @Query("filter_by") String? filterBy,
   });
 }
 

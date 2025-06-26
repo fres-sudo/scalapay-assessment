@@ -36,7 +36,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   Widget build(BuildContext context) {
     return CustomBottomSheet(
       title: "Flitri",
-      height: 250,
+      height: 300,
       child: Column(
         spacing: 20,
         children: [
@@ -63,7 +63,24 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     Expanded(
                       child: TextField(
                         controller: minPriceController,
-                        decoration: InputDecoration(labelText: "Minimo"),
+                        decoration: InputDecoration(
+                          labelText: "Minimo",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color:
+                                  Theme.of(context)
+                                      .inputDecorationTheme
+                                      .enabledBorder
+                                      ?.borderSide
+                                      .color ??
+                                  Colors.grey,
+                            ),
+                          ),
+                        ),
                         keyboardType: TextInputType.number,
                       ),
                     ),
@@ -72,13 +89,30 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       height: 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        color: Colors.grey.shade400,
                       ),
                     ),
                     Expanded(
                       child: TextField(
                         controller: maxPriceController,
-                        decoration: InputDecoration(labelText: "Massimo"),
+                        decoration: InputDecoration(
+                          labelText: "Massimo",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color:
+                                  Theme.of(context)
+                                      .inputDecorationTheme
+                                      .enabledBorder
+                                      ?.borderSide
+                                      .color ??
+                                  Colors.grey,
+                            ),
+                          ),
+                        ),
                         keyboardType: TextInputType.number,
                       ),
                     ),
@@ -92,6 +126,14 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
+                    final cubit = context.productFiltersCubit;
+                    cubit.filter(
+                      request: cubit.state.copyWith(
+                        minPrice: null,
+                        maxPrice: null,
+                      ),
+                    );
+
                     Navigator.pop(context);
                   },
                   child: Text(

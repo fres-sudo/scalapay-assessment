@@ -12,6 +12,15 @@ class _ProductSearchFieldState extends State<ProductSearchField> {
   final TextEditingController searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    final query = context.productFiltersCubit.state.query;
+    if (query.isNotEmpty && query != 'all') {
+      searchController.text = context.productFiltersCubit.state.query;
+    }
+  }
+
+  @override
   void dispose() {
     searchController.dispose();
     super.dispose();
