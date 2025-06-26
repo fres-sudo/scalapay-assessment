@@ -9,8 +9,20 @@ part 'search_product_request.freezed.dart';
 sealed class SearchProductRequest extends DTO with _$SearchProductRequest {
   const SearchProductRequest._() : super();
 
-  const factory SearchProductRequest() = _SearchProductRequest;
+  const factory SearchProductRequest({
+    @Default("all") String query,
+    @Default(30) int perPage,
+    @Default(1) int page,
+    @Default('_text_match') String sortType,
+    @Default('desc') String sortDirection,
+    double? minPrice,
+    double? maxPrice,
+    String? filterBy,
+  }) = _SearchProductRequest;
+
+  factory SearchProductRequest.empty() =>
+      const SearchProductRequest(query: 'all');
 
   factory SearchProductRequest.fromJson(Map<String, dynamic> json) =>
-    _$SearchProductRequestFromJson(json);
+      _$SearchProductRequestFromJson(json);
 }

@@ -1,22 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:pine/pine.dart';
 import 'package:provider/provider.dart';
+import 'package:scalapay_assessment/models/product/product.dart';
+import 'package:scalapay_assessment/services/network/jto/product/product_jto.dart';
+import 'package:scalapay_assessment/services/network/product/product_service.dart';
+import 'package:scalapay_assessment/services/network/requests/search_product/search_product_request.dart';
 
 /// Abstract class of ProductRepository
 abstract interface class ProductRepository {
-  void search();
-  
+  Future<List<Product>> search({required SearchProductRequest request});
 }
 
 /// Implementation of the base interface ProductRepository
 class ProductRepositoryImpl implements ProductRepository {
-  const ProductRepositoryImpl();
+  final ProductService productService;
+  final DTOMapper<ProductJTO, Product> productMapper;
+
+  const ProductRepositoryImpl({
+    required this.productService,
+    required this.productMapper,
+  });
 
   @override
-  void search() {
-
+  Future<List<Product>> search({required SearchProductRequest request}) async {
+    final response = await productService.searchProducts(
+      request.query,
+      request.perPage,
+      request.page,
+      '${request.sortType}:${request.sortDirection}',
+      'scalapayappit', // Replace with actual partnerId
+      'trovaprezzi', // Replace with actual source
+      'it', // Replace with actual language
+      'IT', // Replace with actual country
+      minPrice: request.minPrice,
+      maxPrice: request.maxPrice,
+      filterBy: request.filterBy,
+    );
+    return response.groupedHits
+        .map(
+          (g) => g.hits.map((h) => productMapper.fromDTO(h.document)).toList(),
+        )
+        .expand((x) => x)
+        .toList();
   }
-
-  
 }
 
 extension ProductRepositoryExtension on BuildContext {
